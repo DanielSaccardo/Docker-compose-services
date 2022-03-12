@@ -24,7 +24,7 @@
         - opcache.save_comments=1
         - opcache.revalidate_freq change it to 1
 
-- Start the docker-compose.yml file or through Portainer or by executing the following command
+- Start the docker-compose.yml file through Portainer or by executing the following command
     ```sh
     sudo docker-compose up -d
     ```
