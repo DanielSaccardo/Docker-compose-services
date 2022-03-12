@@ -1,0 +1,17 @@
+version: "2"
+
+
+services:
+  homer:
+    image: b4bz/homer:latest
+    #To build from source, comment previous line and uncomment below
+    #build: .
+    container_name: homer
+    volumes:
+      - /path/to/homer/assets/:/www/assets  #change here
+    ports:
+      - 8080:8080
+    #environment:
+    #  - UID=1000
+    #  - GID=1000
+    restart: unless-stopped

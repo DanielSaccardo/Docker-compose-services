@@ -1,0 +1,33 @@
+version: "2.1"
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:arm64v8-arch #change here if there are incompatibility problems
+    container_name: calibre
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam #TimeZone
+      - PASSWORD=password #optional
+      - CLI_ARGS= #optional
+    volumes:
+      - /path/to/calibre:/config #change here
+    ports:
+      - 8880:8080
+      - 8881:8081
+    restart: unless-stopped
+    
+  calibre-web:
+    image: lscr.io/linuxserver/calibre-web:arm64v8-latest #change here if there are incompatibility problems
+    container_name: calibre-web
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam #TimeZone
+      - DOCKER_MODS=linuxserver/calibre-web:calibre #optional
+      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
+    volumes:
+      - /path/to/calibre:/config  #change here
+      - /path/to/calibre/Calibre Library/:/books  #change here
+    ports:
+      - 8083:8083
+    restart: unless-stopped

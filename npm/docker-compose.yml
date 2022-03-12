@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    image: jc21/nginx-proxy-manager:latest
+    ports:
+      - 80:80
+      - 81:81
+      - 443:443
+    volumes:
+      - /path/to/npm/config.json:/app/config/production.json  #change here
+      - /path/to/npm/data:/data  #change here 
+      - /path/to/npm/letsencrypt:/etc/letsencrypt  #change here
+  db:
+    image: jc21/mariadb-aria:10.4.15-innodb
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_password  #change here
+      MYSQL_DATABASE: mysql_db_name  #change here
+      MYSQL_USER: mysql_user  #change here
+      MYSQL_PASSWORD: mysql_password  #change here
+    volumes:
+      - /path/to/npm/data/mysql:/var/lib/mysql  #change here
+    restart: unless-stopped
