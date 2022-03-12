@@ -10,9 +10,9 @@
 | Portainer | [portainer/README.md][portainer] |
 | Homer | [homer/README.md][homer] |
 
-   [nextcloud]: <https://github.com/DanielSaccardo/nextcloud/README.md>
-   [npm]: <https://github.com/DanielSaccardo/npm/README.md>
-   [plex]: <https://github.com/DanielSaccardo/plex/README.md>
-   [calibre]: <https://github.com/DanielSaccardo/calibre/README.md>
-   [portainer]: https://github.com/DanielSaccardo/portainer/README.md>
-   [homer]: <https://github.com/DanielSaccardo/homer/README.md>
+   [nextcloud]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/nextcloud/README.md>
+   [npm]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/npm/README.md>
+   [plex]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/plex/README.md>
+   [calibre]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/calibre/README.md>
+   [portainer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/portainer/README.md>
+   [homer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/homer/README.md>
