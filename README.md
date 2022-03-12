@@ -35,7 +35,7 @@
     cd /var/lib/docker/volumes/nextcloud_nextcloud/_data/config
     sudo nano config.php
     ```
-- Here add/modify these parameters if using a reverse proxy:
+- Here add/modify these parameters:
     ```sh
     'trusted_domains' => 
       array (
