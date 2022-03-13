@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     image: jc21/nginx-proxy-manager:latest
+    container_name: npm
     ports:
       - 80:80
       - 81:81
@@ -20,3 +21,8 @@ services:
     volumes:
       - /path/to/npm/data/mysql:/var/lib/mysql  #change here
     restart: unless-stopped
+    
+networks:
+   default:
+     external:
+      name: nginx_proxy
