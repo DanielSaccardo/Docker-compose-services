@@ -113,7 +113,7 @@ To easily access to the nextcloud main folder you can create a symbolic link by 
 sudo ln -s /var/lib/docker/volumes/nextcloud_nextcloud /path/to/custom/folder
 ```
 
-Than you can access your nextcloud folder by executing the following
+Then you can access your nextcloud folder by executing the following
 
 ```sh
 sudo su
