@@ -21,6 +21,12 @@
         - opcache.save_comments=1
         - opcache.revalidate_freq change it to 1
 
+- Forward port 8888/tcp to allow remote access
+
+    ```sh
+    sudo ufw allow 8888/tcp
+    ```
+
 - Start the docker-compose.yml file through Portainer or by executing the following command
    
    ```sh
