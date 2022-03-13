@@ -45,11 +45,12 @@ links:
 
   - name: "Oracle Cloud"
     icon: "fas fa-cloud"
-    url: "https://cloud.oracle.com/compute/instances/ocid1.instance.oc1.eu-amsterdam-1.anqw2ljrdfcgvqycwe6okoszxvohgiihqkqd3a2bddrlsnad6a4qpjr>    target: "_blank" # optional html a tag target attribute
+    url: "url"    
+    target: "_blank" # optional html a tag target attribute
 
   - name: "CloudFlare"
     icon: "fab fa-cloudflare"
-    url: "https://dash.cloudflare.com/e9a345c2e417f31ca22bea5ac5e4038c/xrandhz.tech/dns"
+    url: "url"
     target: "_blank"
 
 services:
@@ -69,7 +70,7 @@ services:
       - name: "Plex"
         logo: "assets/tools/plex.png"
         subtitle: "Media server"
-        url: "https://plex.xrandhz.tech"
+        url: "url"
 
       - name: "Calibre"
         logo: "assets/tools/calibre.png"
