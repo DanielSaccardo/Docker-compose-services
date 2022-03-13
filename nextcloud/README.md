@@ -1,13 +1,30 @@
 ## Nextcloud installation
 
+- If you haven't created any docker networks than, in your machine, do as follows:
+    ```sh
+    sudo docker network create nginx_proxy
+    sudo docker network create backend
+    ``` 
+
 - On docker-compose.yml change:
     - MYSQL_ROOT_PASSWORD 
     - MYSQL_PASSWORD (Must be the same in the two "enviroment" sections)
     - MYSQL_DATABASE (Must be the same in the two "enviroment" sections)
     - MYSQL_USER (Must be the same in the two "enviroment" sections)
 
+- Check if php is already installed on your machine:
 
-- On /etc/php/8.0/apache2/php.ini:
+    ```sh
+    php --version
+    ```
+
+- If not than install it by doing:
+
+    ```sh
+    sudo apt install php8.0
+    ```
+
+- On /etc/php/your_version/apache2/php.ini:
     - memory_limit assign at least 512M
     - upload_max_filesize assign at least 200M
     - max_execution_time assign 360
@@ -21,21 +38,43 @@
         - opcache.save_comments=1
         - opcache.revalidate_freq change it to 1
 
-- Forward port 8888/tcp to allow remote access
+- If you are NOT using reverse proxy:
+    - Forward port 8888/tcp to allow remote access
 
-    ```sh
-    sudo ufw allow 8888/tcp
-    ```
+        ```sh
+        sudo ufw allow 8888/tcp
+        ```
 
-- Start the docker-compose.yml file through Portainer or by executing the following command
+    - Start the docker-compose.yml file through Portainer or by executing the following command
+
+       ```sh
+        sudo docker-compose up -d
+        ```
+
+    - Access configuration page at your_ip:8888
    
-   ```sh
-    sudo docker-compose up -d
-    ```
+- If you are using a reverse proxy:
+    - Access to your Nginx proxy manager page
+    - Go to "Proxy Hosts" and "Add Proxy Host"
+    - Then select your domain
+    - Scheme => http
+    - Forward Hostname / IP => nextcloud
+    - Forward Port => 80
+    - On SSL Tab:
+        - Create or reuse a previuously created certificate
+        - Enable Force SSL
+        - Enable HTTP/2 Support
+        - Enable HSTS Enabled
+        
+     - Now you can start the docker-compose.yml file through Portainer or by executing the following command
 
-- Access configuration page at your_ip:8888
-
-- Once the initializzation is done:
+       ```sh
+        sudo docker-compose up -d
+        ```
+        
+     - Access configuration page at your.proxy.domain
+     
+- Once the initializzation is done you need to change some parameters in the config folder:
    
    ```sh
     sudo su
@@ -43,7 +82,7 @@
     sudo nano config.php
     ```
 
-- Here add/modify these parameters:
+- Here if using reverse proxy add/modify these parameters, else skip to the next point:
    
    ```sh
     'trusted_domains' => 
@@ -52,6 +91,10 @@
       ),
       'overwritehost'=> 'reverseproxy_domain',
       'overwriteprotocol' => 'https',
+    ```
+
+- Add this parameter:
+    ```sh
       'default_phone_region'=> 'code',
     ```
    
