@@ -1,5 +1,12 @@
 version: '2'
 
+
+networks:
+  nginx_proxy:
+    external: true
+  backend:
+    external: true
+
 volumes:
   nextcloud:
   db:
@@ -9,7 +16,9 @@ services:
     image: mariadb:latest
     restart: "unless-stopped"
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
-
+    networks:
+      - backend
+      
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -20,6 +29,7 @@ services:
 
   app:
     image: nextcloud:latest
+    container_name: nextcloud
     restart: "unless-stopped"
     ports:
       - 8888:80
@@ -32,3 +42,6 @@ services:
       - MYSQL_DATABASE=mysql_db_name   #change here
       - MYSQL_USER=mysql_user  #change here
       - MYSQL_HOST=db
+    networks:
+      - nginx_proxy
+      - backend
