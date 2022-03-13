@@ -15,3 +15,8 @@ services:
       - /path/to/plex/movies/:/movies  #change here
       - /path/to/plex/animation/:/animation  #change here
     restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: nginx_proxy
