@@ -1,6 +1,6 @@
 ## NGINX Proxy Manager Installation
 
-If you haven't created any docker networks than, in your machine, do as follows:
+If you haven't created any docker networks then, in your machine, do as follows:
 
 ```sh
 sudo docker network create nginx_proxy
@@ -29,7 +29,7 @@ sudo ufw allow 443/tcp
 sudo ufw allow 81
 ```
 
-Than if you are in the same network go to server_ip:81, else router_ip:81
+Then if you are in the same network go to server_ip:81, else router_ip:81
 
 The default credentials are:
 - Email: admin@example.com
@@ -46,7 +46,7 @@ As last thing go to "Proxy Hosts"
 - Forward Port => 81
 - Block Common Exploits => Enabled
 - On SSL page:
-    - Click the box under SSL certificate and than select "Request a new SSL certificate"
+    - Click the box under SSL certificate and then select "Request a new SSL certificate"
     - Force SSL => Enabled
     - HTTP/2 Support => Enabled
     - HSTS => Enabled
