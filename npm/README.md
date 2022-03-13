@@ -1,58 +1,64 @@
 ## NGINX Proxy Manager Installation
 
-- If you haven't created any docker networks than, in your machine, do as follows:
+If you haven't created any docker networks than, in your machine, do as follows:
 
-    ```sh
-    sudo docker network create nginx_proxy
-    sudo docker network create backend
-    ``` 
+```sh
+sudo docker network create nginx_proxy
+sudo docker network create backend
+``` 
     
-- On docker-compose.yml change:
-    - MYSQL_ROOT_PASSWORD 
-    - MYSQL_PASSWORD
-    - MYSQL_DATABASE
-    - MYSQL_USER
-    - Volumes sections with the paths you want
+On docker-compose.yml change:
+- MYSQL_ROOT_PASSWORD 
+- MYSQL_PASSWORD
+- MYSQL_DATABASE
+- MYSQL_USER
+- Volumes sections with the paths you want
 
-- Start the docker-compose.yml file through Portainer or by executing the following command
+Start the docker-compose.yml file through Portainer or by executing the following command
 
-    ```sh
-    sudo docker-compose up -d
-    ```
+```sh
+sudo docker-compose up -d
+```
 
-- If you are in the same network with the server simply go to server_ip:81 
+On both router and server, forward ports 80 and 80/tcp, 443 and 443/tcp and if the server is not located on your same network the 81:
 
-- Else forward port 81 to allow remote access (on both router and machine) than go to your_ip:81
+```sh
+sudo ufw allow 80
+sudo ufw allow 80/tcp
+sudo ufw allow 443
+sudo ufw allow 443/tcp
+sudo ufw allow 81
+```
 
-  ```sh
-  sudo ufw allow 81
-  ```
-- The default credentials are:
-  - Email: admin@example.com
-  - Password: changeme
+Than if you are in the same network go to server_ip:81, else router_ip:81
 
-- After login it will promt you to change the credentials
+The default credentials are:
+- Email: admin@example.com
+- Password: changeme
 
-- As last thing go to "Proxy Hosts"
+After login it will promt you to change the credentials
 
-- "Add Proxy Host":
-  - Domain name => The domain you want to use to access at NGINX proxy manager
-  - Scheme => http
-  - Forward Hostname / IP => npm
-  - Forward Port => 81
-  - Block Common Exploits => Enabled
-  - On SSL page:
+As last thing go to "Proxy Hosts"
+
+"Add Proxy Host":
+- Domain name => The domain you want to use to access at NGINX proxy manager
+- Scheme => http
+- Forward Hostname / IP => npm
+- Forward Port => 81
+- Block Common Exploits => Enabled
+- On SSL page:
     - Click the box under SSL certificate and than select "Request a new SSL certificate"
     - Force SSL => Enabled
     - HTTP/2 Support => Enabled
     - HSTS => Enabled
     - Select "I Agree to the ..."
-    - Click on "Save"
+- Click on "Save"
 
-- Delete the forward to 81 if you have created one:
-    ```sh
-    sudo ufw delete allow 81
-    ```
+Delete the forward to 81 if you have created one:
+
+```sh
+sudo ufw delete allow 81
+```
         
 Here we go, now if you try to go to the domain name you have previuously set on "Domain Name", it should take you via https on your self-hosted Nginx Proxy Manager site
 
