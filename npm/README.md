@@ -66,3 +66,5 @@ Everytime you create a new docker-compose and want to implement reverse proxy, y
       external:
         name: nginx_proxy
   ```
+
+Also note that the "Forward Port" is the internal port not the external one (the docker-compose port scheme is external:internal).
