@@ -13,3 +13,8 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
+
+networks:
+  default:
+    external:
+      name: nginx_proxy
