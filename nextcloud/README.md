@@ -1,6 +1,6 @@
 ## Nextcloud installation
 
-If you haven't created any docker networks than, in your machine, do as follows:
+If you haven't created any docker networks then, in your machine, do as follows:
 
 ```sh
 sudo docker network create nginx_proxy
@@ -19,7 +19,7 @@ Check if php is already installed on your machine:
 php --version
 ```
 
-If not than install it by doing:
+If not then install it by doing:
 
 ```sh
 sudo apt install php8.0
@@ -64,7 +64,7 @@ If you are using a reverse proxy:
   - Forward Port => 80
   - Block Common Exploits => Enabled
   - On SSL page:
-    - Click the box under SSL certificate and than select "Request a new SSL certificate"
+    - Click the box under SSL certificate and then select "Request a new SSL certificate"
     - Force SSL => Enabled
     - HTTP/2 Support => Enabled
     - HSTS => Enabled
