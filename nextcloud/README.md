@@ -1,102 +1,107 @@
 ## Nextcloud installation
 
-- If you haven't created any docker networks than, in your machine, do as follows:
+If you haven't created any docker networks than, in your machine, do as follows:
+
+```sh
+sudo docker network create nginx_proxy
+sudo docker network create backend
+``` 
+
+On docker-compose.yml change:
+- MYSQL_ROOT_PASSWORD 
+- MYSQL_PASSWORD (Must be the same in the two "enviroment" sections)
+- MYSQL_DATABASE (Must be the same in the two "enviroment" sections)
+- MYSQL_USER (Must be the same in the two "enviroment" sections)
+
+Check if php is already installed on your machine:
+
+```sh
+php --version
+```
+
+If not than install it by doing:
+
+```sh
+sudo apt install php8.0
+```
+
+On /etc/php/your_version/apache2/php.ini:
+- memory_limit assign at least 512M
+- upload_max_filesize assign at least 200M
+- max_execution_time assign 360
+- post_max_size assign 200M
+- uncomment:
+    - date.timezone and assign it to yours (see https://www.php.net/manual/en/timezones.php)
+    - opcache.enable=1
+    - opcache.interned_strings_buffer=8
+    - opcache.max_accelerated_files=10000
+    - opcache.memory_consumption=128
+    - opcache.save_comments=1
+    - opcache.revalidate_freq change it to 1
+
+If you are NOT using reverse proxy:
+- Forward port 8888/tcp to allow remote access (on both router and machine)
+
     ```sh
-    sudo docker network create nginx_proxy
-    sudo docker network create backend
-    ``` 
-
-- On docker-compose.yml change:
-    - MYSQL_ROOT_PASSWORD 
-    - MYSQL_PASSWORD (Must be the same in the two "enviroment" sections)
-    - MYSQL_DATABASE (Must be the same in the two "enviroment" sections)
-    - MYSQL_USER (Must be the same in the two "enviroment" sections)
-
-- Check if php is already installed on your machine:
-
-    ```sh
-    php --version
+    sudo ufw allow 8888/tcp
     ```
 
-- If not than install it by doing:
+- Start the docker-compose.yml file through Portainer or by executing the following command
 
-    ```sh
-    sudo apt install php8.0
+   ```sh
+    sudo docker-compose up -d
     ```
 
-- On /etc/php/your_version/apache2/php.ini:
-    - memory_limit assign at least 512M
-    - upload_max_filesize assign at least 200M
-    - max_execution_time assign 360
-    - post_max_size assign 200M
-    - uncomment:
-        - date.timezone and assign it to yours (see https://www.php.net/manual/en/timezones.php)
-        - opcache.enable=1
-        - opcache.interned_strings_buffer=8
-        - opcache.max_accelerated_files=10000
-        - opcache.memory_consumption=128
-        - opcache.save_comments=1
-        - opcache.revalidate_freq change it to 1
-
-- If you are NOT using reverse proxy:
-    - Forward port 8888/tcp to allow remote access (on both router and machine)
-
-        ```sh
-        sudo ufw allow 8888/tcp
-        ```
-
-    - Start the docker-compose.yml file through Portainer or by executing the following command
-
-       ```sh
-        sudo docker-compose up -d
-        ```
-
-    - Access configuration page at your_ip:8888
+- Access configuration page at your_ip:8888
    
-- If you are using a reverse proxy:
-    - Access to your Nginx proxy manager page
-    - Go to "Proxy Hosts" and "Add Proxy Host"
-    - Then select your domain
-    - Scheme => http
-    - Forward Hostname / IP => nextcloud
-    - Forward Port => 80
-    - On SSL Tab:
-        - Create or reuse a previuously created certificate
-        - Enable Force SSL
-        - Enable HTTP/2 Support
-        - Enable HSTS Enabled
+If you are using a reverse proxy:
+- Access to your Nginx proxy manager page
+- Go to "Proxy Hosts"
+- "Add Proxy Host":
+  - Domain name => The domain you want to use to access at NGINX proxy manager
+  - Scheme => http
+  - Forward Hostname / IP => nextcloud
+  - Forward Port => 80
+  - Block Common Exploits => Enabled
+  - On SSL page:
+    - Click the box under SSL certificate and than select "Request a new SSL certificate"
+    - Force SSL => Enabled
+    - HTTP/2 Support => Enabled
+    - HSTS => Enabled
+    - Select "I Agree to the ..."
+  - Click on "Save"
         
-     - Now you can start the docker-compose.yml file through Portainer or by executing the following command
+ - Now you can start the docker-compose.yml file through Portainer or by executing the following command
 
-       ```sh
-        sudo docker-compose up -d
-        ```
+   ```sh
+    sudo docker-compose up -d
+    ```
         
-     - Access configuration page at your.proxy.domain
+ - Access configuration page at your.proxy.domain
      
-- Once the initializzation is done you need to change some parameters in the config folder:
+Once the initializzation is done you need to change some parameters in the config folder:
    
-   ```sh
-    sudo su
-    cd /var/lib/docker/volumes/nextcloud_nextcloud/_data/config
-    sudo nano config.php
-    ```
+```sh
+sudo su
+cd /var/lib/docker/volumes/nextcloud_nextcloud/_data/config
+sudo nano config.php
+```
 
-- Here if using reverse proxy add/modify these parameters, else skip to the next point:
+Here if using reverse proxy add/modify these parameters, else skip to the next point:
    
-   ```sh
-    'trusted_domains' => 
-      array (
-        0 => 'reverseproxy_domain',
-      ),
-      'overwritehost'=> 'reverseproxy_domain',
-      'overwriteprotocol' => 'https',
-    ```
+```sh
+'trusted_domains' => 
+  array (
+    0 => 'reverseproxy_domain',
+  ),
+  'overwritehost'=> 'reverseproxy_domain',
+  'overwriteprotocol' => 'https',
+```
 
-- Add this parameter:
-    ```sh
-      'default_phone_region'=> 'code',
-    ```
+Add this parameter:
+```sh
+  'default_phone_region'=> 'code',
+```
    
    In case you don't know which default_phone_code you need, refer to [Wikipedia - Country Codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
    
