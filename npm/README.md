@@ -4,7 +4,6 @@ If you haven't created any docker networks than, in your machine, do as follows:
 
 ```sh
 sudo docker network create nginx_proxy
-sudo docker network create backend
 ``` 
     
 On docker-compose.yml change:
