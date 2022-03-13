@@ -39,7 +39,7 @@
         - opcache.revalidate_freq change it to 1
 
 - If you are NOT using reverse proxy:
-    - Forward port 8888/tcp to allow remote access
+    - Forward port 8888/tcp to allow remote access (on both router and machine)
 
         ```sh
         sudo ufw allow 8888/tcp
