@@ -1,5 +1,19 @@
 ## Nextcloud installation
 
+### Note before start setting up
+When creating folders of volume section of docker-compose.yml file ensure:
+- data folder has owner www-data and 775 permissions
+- database folder has owner mysql and 750 permissions
+
+```
+sudo chmod 775 nextcloud/data
+sudo chown -R www-data:www-data nextcloud/data
+
+sudo chmod 750 nextcloud/database
+sudo chown -R mysql:mysql nextcloud/database
+```
+
+### Setup
 If you haven't created any docker networks then, in your machine, do as follows:
 
 ```sh
@@ -82,8 +96,7 @@ If you are using a reverse proxy:
 Once the initializzation is done you need to change some parameters in the config folder:
    
 ```sh
-sudo su
-cd /var/lib/docker/volumes/nextcloud_nextcloud/_data/config
+cd /path/to/your/nextcloud/data/config
 sudo nano config.php
 ```
 
@@ -105,23 +118,6 @@ Add this parameter:
    
    In case you don't know which default_phone_code you need, refer to [Wikipedia - Country Codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
    
-### Optional:
-
-To easily access to the nextcloud main folder you can create a symbolic link by doing:
-
-```sh
-sudo ln -s /var/lib/docker/volumes/nextcloud_nextcloud /path/to/custom/folder
-```
-
-Then you can access your nextcloud folder by executing the following
-
-```sh
-sudo su
-cd /path/to/custom/folder/nextcloud_nextcloud/_data
-```
-
-> Note that:
-> you need to log as root user to access at nextcloud_nextcloud/_data
 
 
 Here we go, all should work correctly
