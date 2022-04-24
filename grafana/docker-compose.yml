@@ -1,12 +1,5 @@
 version: '3.3'
 
-networks:
-  nginx_proxy:
-    external: true
-  backend:
-    external: true
-
-
 services:
   
   node-exporter:
@@ -14,8 +7,6 @@ services:
     container_name: node_exporter
     volumes:
       - '/:/host:ro,rslave'
-    networks:
-      - backend
       
   prometheus:
     image: prom/prometheus:latest
@@ -24,13 +15,14 @@ services:
       - '9091:9090' 
     volumes:
       - '/path/to/your/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml' # change here
-    networks:
-      - nginx_proxy
         
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
       - '3457:3000'
-    networks:
-      - nginx_proxy
+      
+networks: 
+   default: 
+     external: 
+       name: nginx_proxy
