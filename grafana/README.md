@@ -87,5 +87,3 @@
     under "Prometheus" select "Prometheus (default)" and then "Import".
     
 Here we go now your dashboard will appear and over time the data will be filled
-
-⚠️ For some reason restarting Grafana container will result in a reset. 
