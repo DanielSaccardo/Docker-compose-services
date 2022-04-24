@@ -19,6 +19,9 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    user: "0"
+    volumes:
+      - /path/to/your/grafana/configs/:/var/lib/grafana
     ports:
       - '3457:3000'
       
