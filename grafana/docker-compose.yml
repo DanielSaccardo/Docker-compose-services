@@ -15,15 +15,15 @@ services:
     volumes:
       - '/:/host:ro,rslave'
     networks:
-      - nginx_proxy
+      - backend
       
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - '9091:9090' #modify 9091 to your setup needs
+      - '9091:9090' 
     volumes:
-      - '/home/ubuntu/webFM/srv/Configs/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml' #modify the path for your install location
+      - '/path/to/your/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml' # change here
     networks:
       - nginx_proxy
         
@@ -31,6 +31,6 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - '3457:3000' #modify 3457 to your setup needs
+      - '3457:3000'
     networks:
       - nginx_proxy
