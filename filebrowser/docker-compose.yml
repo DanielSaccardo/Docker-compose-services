@@ -1,0 +1,18 @@
+version: "2.1"
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    volumes:
+      - /home/ubuntu/webFM/srv/:/srv
+      - /home/ubuntu/webFM/data/database.db:/database.db
+      - /home/ubuntu/webFM/data/filebrowser.json:/filebrowser.json
+    ports:
+      - 8080:80
+      
+      
+networks:
+  default:
+    external:
+      name: nginx_proxy
