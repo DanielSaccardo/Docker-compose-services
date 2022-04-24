@@ -9,6 +9,7 @@
 | Calibre             | [calibre/README.md][RMEcalibre]     | [calibre/docker-compose.yml][DCOMPcalibre]     |
 | Portainer           | [portainer/README.md][RMEportainer] | [portainer/docker-compose.yml][DCOMPportainer] |
 | Homer Dashboard     | [homer/README.md][RMEhomer]         | [homer/docker-compose.yml][DCOMPhomer]         |
+| Grafana             | [grafana/README.md][RMEgrafana]     | [grafana/docker-compose.yml][DCOMPgrafana]     |
 
    [RMEnextcloud]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/nextcloud/README.md>
    [RMEnpm]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/npm/README.md>
@@ -16,6 +17,7 @@
    [RMEcalibre]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/calibre/README.md>
    [RMEportainer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/portainer/README.md>
    [RMEhomer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/homer/README.md>
+   [RMEgrafana]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/grafana/README.md>
 
    [DCOMPnextcloud]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/nextcloud/docker-compose.yml>
    [DCOMPnpm]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/npm/docker-compose.yml>
@@ -23,3 +25,4 @@
    [DCOMPcalibre]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/calibre/docker-compose.yml>
    [DCOMPportainer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/portainer/docker-compose.yml>
    [DCOMPhomer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/homer/docker-compose.yml>
+   [DCOMPgrafana]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/grafana/docker-compose.yml>
