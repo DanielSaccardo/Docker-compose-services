@@ -20,6 +20,7 @@
 
   ```sh
   sudo docker network create nginx_proxy
+  sudo docker network create backend
   ``` 
   
 - Then access your Nginx proxy manager page
@@ -66,7 +67,7 @@
 - Then go into "Status"->"Targets" section
 - Check if both "prometheus" and "node-exporter" are running ("UP" green rectangle into "Status" Column)
   - If yes, then here you have done and you can go directly to the "Grafana" part
-  - If no, then probably there is a problem retrieving data from "prometheus" or "node-exporter" IPs check prometheus.yml 
+  - If no, then probably there is a problem retrieving data from "prometheus" or "node-exporter" or "cadvisor" IPs check prometheus.yml 
     configuration file and the localhost IP for the single container
   
  ### Grafana
@@ -81,7 +82,7 @@
   - In URL write: http://prometheus:9090 (or http://prometheus_localhost_ip:9090)
   - Then click "Save & Test"
   - If all was correctly configured "Data source is working" message will be shown
- - Now the next thing to do is searching on the net for the dashboard we want to install by using the keywords "node exporter dashboard site:grafana.com"
+ - Now the next thing to do is searching on the net for the dashboard we want to install by using the keywords "node exporter dashboard site:grafana.com", for system monitoring, or "cAdvisor dashboard site:grafana.com", for container monitoring.
  - Only on the "grafana.com" site copy the ID of the dashboard you wish to have
  - Return to your grafana and by passing over the plus icon select "Import", paste the dashboard ID and click "Load",
     under "Prometheus" select "Prometheus (default)" and then "Import".
