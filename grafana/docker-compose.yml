@@ -45,6 +45,23 @@ services:
       - "8005:8080"
     networks:
       - backend
+      
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - backend
+
+  redis-exporter:
+    container_name: redis_exporter
+    image: oliver006/redis_exporter:latest
+    command: -redis.addr redis://redis:6379
+    ports:
+      - 9121:9121
+    networks:
+      - backend
   
   grafana:
     image: grafana/grafana:latest
