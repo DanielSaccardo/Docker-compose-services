@@ -13,9 +13,9 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - '9091:9090' #modify 9091 to your setup needs
+      - 9091:9090
     volumes:
-      - '/home/ubuntu/webFM/srv/Configs/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml' # change here
+      - '/path/to/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml' # change here
     depends_on:
       - cadvisor
       - node-exporter
@@ -27,22 +27,22 @@ services:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
     volumes:
-      - '/:/host:ro,rslave'
+      - /:/host:ro,rslave
     networks:
       - backend
       
   cadvisor:
     image: raymondmm/cadvisor:latest
     container_name: cadvisor
+    user: "0"
+    privileged: true
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    expose:
-      - 8080
     ports:
-      - "8005:8080"
+      - 8005:8080
     networks:
       - backend
       
@@ -68,9 +68,9 @@ services:
     container_name: grafana
     user: "0"
     volumes:
-      - /home/ubuntu/webFM/srv/Configs/grafana:/var/lib/grafana
+      - /path/to/grafana/configs/:/var/lib/grafana
     ports:
-      - '3457:3000' #modify 3457 to your setup needs
+      - 3457:3000
     networks:
       - backend
       - nginx_proxy
