@@ -21,6 +21,7 @@ services:
       - MYSQL_PASSWORD=mysql_password  #change here
       - MYSQL_DATABASE=mysql_db_name  #change here
       - MYSQL_USER=mysql_user  #change here
+    restart: unless-stopped
 
   app:
     image: nextcloud:latest
@@ -40,3 +41,4 @@ services:
     networks:
       - nginx_proxy
       - backend
+    restart: unless-stopped

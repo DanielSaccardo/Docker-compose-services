@@ -22,6 +22,7 @@ services:
     networks:
       - backend
       - nginx_proxy
+    restart: unless-stopped
   
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -30,6 +31,7 @@ services:
       - /:/host:ro,rslave
     networks:
       - backend
+    restart: unless-stopped
       
   cadvisor:
     image: raymondmm/cadvisor:latest
@@ -45,6 +47,7 @@ services:
       - 8005:8080
     networks:
       - backend
+    restart: unless-stopped
       
   redis:
     container_name: redis
@@ -53,6 +56,7 @@ services:
       - 6379:6379
     networks:
       - backend
+    restart: unless-stopped
 
   redis-exporter:
     container_name: redis_exporter
@@ -62,6 +66,7 @@ services:
       - 9121:9121
     networks:
       - backend
+    restart: unless-stopped
   
   grafana:
     image: grafana/grafana:latest
@@ -74,3 +79,4 @@ services:
     networks:
       - backend
       - nginx_proxy
+    restart: unless-stopped
