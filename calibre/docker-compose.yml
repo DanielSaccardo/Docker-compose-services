@@ -3,7 +3,7 @@ version: "2.1"
 services: 
    
    calibre-web: 
-     image: lscr.io/linuxserver/calibre-web:arm64v8-latest #change here if there are incompatibility problems 
+     image: linuxserver/calibre-web:latest
      container_name: calibre-web 
      environment: 
        - PUID=1000 
