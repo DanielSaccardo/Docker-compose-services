@@ -11,6 +11,7 @@
 | Homer Dashboard     | [homer/README.md][RMEhomer]              | [homer/docker-compose.yml][DCOMPhomer]              |
 | Grafana             | [grafana/README.md][RMEgrafana]          | [grafana/docker-compose.yml][DCOMPgrafana]          |
 | Web File Browser    | [filebrowser/README.md][RMEfilebrowser]  | [filebrowser/docker_compose.yml][DCOMPfilebrowser]  |
+| WireGuard           | [wireguard/README.md][RMEwireguard]      | [wireguard/docker_compose.yml][DCOMPwireguard]      |
 
    [RMEnextcloud]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/nextcloud/README.md>
    [RMEnpm]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/npm/README.md>
@@ -20,6 +21,7 @@
    [RMEhomer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/homer/README.md>
    [RMEgrafana]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/grafana/README.md>
    [RMEfilebrowser]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/filebrowser/README.md>
+   [RMEwireguard]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/wireguard/README.md>
    
    [DCOMPnextcloud]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/nextcloud/docker-compose.yml>
    [DCOMPnpm]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/npm/docker-compose.yml>
@@ -29,4 +31,5 @@
    [DCOMPhomer]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/homer/docker-compose.yml>
    [DCOMPgrafana]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/grafana/docker-compose.yml>
    [DCOMPfilebrowser]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/filebrowser/docker-compose.yml>
+   [DCOMPwireguard]: <https://github.com/DanielSaccardo/Docker-compose-services/blob/main/wireguard/docker-compose.yml>
 
