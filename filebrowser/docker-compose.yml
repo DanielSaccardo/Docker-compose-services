@@ -4,16 +4,17 @@ services:
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
+    user: "0"
     volumes:
       - /path/to/main/filebrowser/folder/:/srv
-      - /path/to/database/database.db:/database.db
-      - /path/to/configuration/filebrowser.json:/filebrowser.json
+      - /path/to/database/database.db:/database/filebrowser.db
+      - /path/to/configuration/filebrowser.json:/.filebrowser.json
     ports:
       - 8080:80
     restart: unless-stopped
-      
+    networks:
+      - nginx_proxy
       
 networks:
-  default:
-    external:
-      name: nginx_proxy
+  nginx_proxy:
+    external: true
